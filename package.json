@@ -4,7 +4,8 @@
   "description": "Text-To-Speech bot for discord.",
   "main": "app.js",
   "scripts": {
-    "start": "node -r dotenv/config app.js"
+    "start": "node src/app.js",
+    "debug": "node -r dotenv/config src/app.js"
   },
   "keywords": [
     "discord",
