@@ -23,9 +23,25 @@ client.on("message", async (msg) => {
   ) {
     const connection = client.voice.connections.get(msg.guild.id);
     if (connection) {
-      connection.play(await speech(msg.content), {
+      const content = await speech(msg.content);
+      const dispatcher = connection.play(content, {
         highWaterMark: 6,
         bitrate: "auto",
+      });
+
+      dispatcher.on("finish", () => {
+        content.destroy();
+        dispatcher.destroy();
+      });
+
+      dispatcher.on("close", () => {
+        content.destroy();
+        dispatcher.destroy();
+      });
+
+      dispatcher.on("error", () => {
+        content.destroy();
+        dispatcher.destroy();
       });
     }
   }
@@ -57,6 +73,16 @@ client.on("voiceStateUpdate", (_, state) => {
     connection.disconnect();
     readingChannelDictionary[state.guild.id] = undefined;
   }
+});
+
+client.on("error", (error) => {
+  console.log("error:", JSON.stringify(error));
+  process.exit(1);
+});
+
+client.on("disconnect", () => {
+  console.log("Client is disconnected!");
+  process.exit(1);
 });
 
 client.login(DISCORD_TOKEN);
