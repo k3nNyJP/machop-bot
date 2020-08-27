@@ -4,8 +4,8 @@
   "description": "Text-To-Speech bot for discord.",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "debug": "node -r dotenv/config src/app.js"
+    "start": "node src/app.js --max-old-space-size=512",
+    "debug": "node -r dotenv/config src/app.js --max-old-space-size=512"
   },
   "keywords": [
     "discord",
