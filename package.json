@@ -14,7 +14,7 @@
   "author": "k3nNyJP <k3nNy.51rcy@gmail.com> (https://github.com/k3nNyJP/)",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
+    "@discordjs/opus": "^0.8.0",
     "@google-cloud/text-to-speech": "^3.0.1",
     "discord.js": "^12.2.0",
     "ffmpeg-static": "^4.2.5"
